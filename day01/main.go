@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 	"unicode"
@@ -57,7 +57,7 @@ func spelledOutNumbertoNumeral(number string) string {
 
 func firstPart() {
 	inputFileName := "input.txt"
-	content, err := ioutil.ReadFile(inputFileName)
+	content, err := os.ReadFile(inputFileName)
 	if err != nil {
 		panic(err)
 	}
@@ -83,7 +83,7 @@ func firstPart() {
 
 func secondPart() {
 	inputFileName := "input.txt"
-	content, err := ioutil.ReadFile(inputFileName)
+	content, err := os.ReadFile(inputFileName)
 	if err != nil {
 		panic(err)
 	}
