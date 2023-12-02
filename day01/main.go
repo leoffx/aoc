@@ -90,7 +90,7 @@ func secondPart() {
 	lines := strings.Split(string(content), "\n")
 	sum := 0
 	for _, line := range lines {
-		convertSpelledOutNumbers((&line))
+		convertSpelledOutNumbers(&line)
 		firstDigit, ok := getFirstDigit(line)
 		if !ok {
 			panic("no number found")
