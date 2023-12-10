@@ -33,7 +33,7 @@ func TestCalculateFarthestPointDistance(t *testing.T) {
 	}
 
 	for i, tt := range tests {
-		got := calculateFarthestPointDistance(tt.input)
+		got, _ := calculateFarthestPointDistance(tt.input)
 		if tt.expected != got {
 			t.Fatalf("tests[%d] calculateFarthestPointDistance fail. expected=%d got=%d", i, tt.expected, got)
 		}

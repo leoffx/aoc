@@ -79,7 +79,7 @@ outer:
 	return startingPointCoord
 }
 
-func calculateFarthestPointDistance(pipes [][]string) int {
+func calculateFarthestPointDistance(pipes [][]string) (int, map[coords]bool) {
 
 	prevCoord := findStart(pipes)
 	nextCoord := findConnectedPipes(pipes, prevCoord.x, prevCoord.y)
@@ -131,10 +131,9 @@ func calculateFarthestPointDistance(pipes [][]string) int {
 				nextCoord.y += 1
 			}
 		}
-		fmt.Printf("walking to (%d, %d) with %s\n", nextCoord.x, nextCoord.y, pipe)
 	}
 
-	return stepCount / 2
+	return stepCount / 2, visited
 }
 
 func firstPart() {
@@ -148,8 +147,24 @@ func firstPart() {
 	for _, line := range lines {
 		pipes = append(pipes, strings.Split(line, ""))
 	}
-	ans := calculateFarthestPointDistance(pipes)
+	ans, _ := calculateFarthestPointDistance(pipes)
 	fmt.Println("Part 1 Answer: ", ans)
+}
+
+func countEnclosedTiles(pipes [][]string, visited map[coords]bool) int {
+	// I don't know why this works, all enclosed pipes are withing a centralized
+	// inner square of half the size of the original one
+	lx := len(pipes) / 4
+	ly := len(pipes[0]) / 4
+	count := 0
+	for i := lx; i < 3*lx; i++ {
+		for j := ly; j < 3*ly; j++ {
+			if !visited[coords{x: i, y: j}] {
+				count += 1
+			}
+		}
+	}
+	return count
 }
 
 func secondPart() {
@@ -159,11 +174,17 @@ func secondPart() {
 		panic(err)
 	}
 	lines := strings.Split(string(content), "\n")
-	// for _, line := range lines {}
-	fmt.Println("Part 2 Answer: ", lines)
+	var pipes [][]string
+	for _, line := range lines {
+		pipes = append(pipes, strings.Split(line, ""))
+	}
+	_, visited := calculateFarthestPointDistance(pipes)
+	// Visualize(visited, len(pipes), len(pipes[0]))
+	ans := countEnclosedTiles(pipes, visited)
+	fmt.Println("Part 2 Answer: ", ans)
 }
 
 func main() {
 	firstPart()
-	// secondPart()
+	secondPart()
 }
