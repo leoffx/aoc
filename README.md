@@ -1,3 +1,3 @@
-# Advent of Code 2023
+# Advent of Code
 
-Code solutions for the Advent of Code 2023 https://adventofcode.com/
+Code solutions for the Advent of Code https://adventofcode.com/
