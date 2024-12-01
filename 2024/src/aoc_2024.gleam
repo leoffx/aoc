@@ -1,5 +1,5 @@
 import argv
-import days/day01
+import days/day01/day01
 import gleam/int
 import gleam/io
 
