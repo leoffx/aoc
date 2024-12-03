@@ -1,4 +1,3 @@
-import gleam/bool
 import gleam/int
 import gleam/io
 import gleam/list
@@ -6,8 +5,8 @@ import gleam/string
 import utils
 
 pub fn run() {
-  let res = part1()
-  // part2()
+  // let res = part1()
+  let res = part2()
   io.print("Res: " <> int.to_string(res))
   Nil
 }
@@ -59,16 +58,34 @@ pub fn check_line_safe(line: List(Int)) -> Bool {
 pub fn part1() -> Int {
   let file = "./src/days/day02/input.txt"
   let lines = process_file(file)
-  list.fold(lines, 0, fn(acc, line) {
-    case check_line_safe(line) {
-      True -> acc + 1
-      False -> acc
+  list.count(lines, check_line_safe)
+}
+
+pub fn remove_one_at(my_list, index) -> List(Int) {
+  let before = list.take(my_list, index)
+  let after = list.drop(my_list, index + 1)
+  list.flatten([before, after])
+}
+
+pub fn create_sublists(my_list) {
+  case my_list {
+    [] -> []
+    [_] -> []
+    _ -> {
+      let indices = list.range(0, list.length(my_list) - 1)
+      list.flatten([
+        [my_list],
+        list.map(indices, fn(i) { remove_one_at(my_list, i) }),
+      ])
     }
-  })
+  }
 }
 
 fn part2() {
-  let _file = "./src/days/day02/input.txt"
-  // let #(col1, col2) = process_file(file)
-  Nil
+  let file = "./src/days/day02/input.txt"
+  let lines = process_file(file)
+  list.count(lines, fn(line) {
+    let sublists = create_sublists(line)
+    list.any(sublists, check_line_safe)
+  })
 }

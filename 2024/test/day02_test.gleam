@@ -36,3 +36,22 @@ pub fn check_line6_safe_test() {
   day02.check_line_safe(line)
   |> should.equal(True)
 }
+
+pub fn remove_one_at_test() {
+  let list = [1, 2, 3, 4, 5]
+  day02.remove_one_at(list, 2)
+  |> should.equal([1, 2, 4, 5])
+}
+
+pub fn create_sublists_test() {
+  let list = [1, 2, 3, 4, 5]
+  day02.create_sublists(list)
+  |> should.equal([
+    [1, 2, 3, 4, 5],
+    [2, 3, 4, 5],
+    [1, 3, 4, 5],
+    [1, 2, 4, 5],
+    [1, 2, 3, 5],
+    [1, 2, 3, 4],
+  ])
+}
