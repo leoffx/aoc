@@ -33,7 +33,7 @@ fn process_file(file: String) {
 }
 
 pub fn part1() {
-  let file = "./src/days/day01/input.txt"
+  let file = "./src/days/day1/input.txt"
   let #(col1, col2) = process_file(file)
   let sorted_col1 = list.sort(col1, int.compare)
   let sorted_col2 = list.sort(col2, int.compare)
@@ -59,7 +59,7 @@ pub fn count_numbers(numbers: List(Int)) {
 }
 
 fn part2() {
-  let file = "./src/days/day01/input.txt"
+  let file = "./src/days/day1/input.txt"
   let #(col1, col2) = process_file(file)
   let count_map = count_numbers(col2)
   let result =

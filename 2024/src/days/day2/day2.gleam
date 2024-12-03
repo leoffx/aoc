@@ -56,7 +56,7 @@ pub fn check_line_safe(line: List(Int)) -> Bool {
 }
 
 pub fn part1() -> Int {
-  let file = "./src/days/day02/input.txt"
+  let file = "./src/days/day2/input.txt"
   let lines = process_file(file)
   list.count(lines, check_line_safe)
 }
@@ -82,7 +82,7 @@ pub fn create_sublists(my_list) {
 }
 
 fn part2() {
-  let file = "./src/days/day02/input.txt"
+  let file = "./src/days/day2/input.txt"
   let lines = process_file(file)
   list.count(lines, fn(line) {
     let sublists = create_sublists(line)

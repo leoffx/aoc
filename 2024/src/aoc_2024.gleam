@@ -1,13 +1,13 @@
 import argv
-import days/day01/day01
-import days/day02/day02
+import days/day1/day1
+import days/day2/day2
 import gleam/int
 import gleam/io
 
 fn run_day(day: String) {
   case int.parse(day) {
-    Ok(1) -> day01.run()
-    Ok(2) -> day02.run()
+    Ok(1) -> day1.run()
+    Ok(2) -> day2.run()
     _ -> io.print("Day not implemented")
   }
 }
